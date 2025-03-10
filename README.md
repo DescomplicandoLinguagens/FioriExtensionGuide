@@ -34,8 +34,8 @@ Esta extensão permite que os usuários analisem páginas de aplicativos SAP Fio
 -   Action: `action`
 -   Nome: `nome`
 -   CDS: `cds`
-- **Espera-se um retorno para informações**: Lista de Name/Value `[{ name: '', value: '' }]`
-- **Expera-se um retorno para documentos**: Lista de Name/Value `[{ name: '', value: '' }]`
+- **Espera-se um retorno para informações**: Lista de Name/Value `[{ name: 'Informação Exemplo', value: '123' }]`
+- **Expera-se um retorno para documentos**: Lista de Name/Value `[{ name: 'Especificação A', value: 'http://google.com.br' }]`
 
 ## Exemplo de Código para a Classe
 ```abap
