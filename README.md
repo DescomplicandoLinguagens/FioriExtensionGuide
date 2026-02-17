@@ -4,7 +4,7 @@ Uma extensão do Chrome para analisar e extrair informações de aplicativos SAP
 
 - **Versão**: 1.0
 - **Manifest Version**: 3
-- **Autor**: [Seu Nome ou Equipe]
+- **Autor**: [Gabriel Dias Faria]
 - **Data**: 10 de março de 2025
 
 ## Descrição
