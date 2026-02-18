@@ -29,11 +29,7 @@ Esta extensão permite que os usuários analisem páginas de aplicativos SAP Fio
 - **Criar uma Rota na SICF**: `/sap/bc/fioriextension`.
 - **Apontar para uma classe que implementa a interface**: `IF_HTTP_EXTENSION`.
 - **Implementar o método**: `IF_HTTP_EXTENSION~HANDLE_REQUEST`.
-- **Será executado um GET com os parâmetros**:
--   Objeto Semântico: `objeto`
--   Action: `action`
--   Nome: `nome`
--   CDS: `cds`
+- **Será executado um GET com os parâmetros do App**:
 - **Espera-se um retorno para informações**: Lista de Name/Value `[{ name: 'Informação Exemplo', value: '123' }]`
 - **Expera-se um retorno para documentos**: Lista de Name/Value `[{ name: 'Especificação A', value: 'http://google.com.br' }]`
 
@@ -41,6 +37,8 @@ Esta extensão permite que os usuários analisem páginas de aplicativos SAP Fio
 ```abap
 
   METHOD if_http_extension~handle_request.
+
+      METHOD if_http_extension~handle_request.
 
     " Estrutura de Retorno
     TYPES: BEGIN OF ty_key,
@@ -62,20 +60,20 @@ Esta extensão permite que os usuários analisem páginas de aplicativos SAP Fio
     server->request->get_form_fields( CHANGING fields = lt_params ).
     CHECK lines( lt_params ) > 0.
 
-    DATA(lv_object) = VALUE #( lt_params[ 1 ] OPTIONAL ). " Objeto Semântico
-    DATA(lv_action) = VALUE #( lt_params[ 2 ] OPTIONAL ). " Ação
-    DATA(lv_nome)   = VALUE #( lt_params[ 3 ] OPTIONAL ). " Nome App
-    DATA(lv_cds)    = VALUE #( lt_params[ 4 ] OPTIONAL ). " CDS
+    " Mapeamento direto pelos nomes dos parâmetros na URL
+    DATA(lv_namespace) = VALUE #( lt_params[ name = 'name_space'    ]-value OPTIONAL ).
+    DATA(lv_server)    = VALUE #( lt_params[ name = 'server'        ]-value OPTIONAL ).
+    DATA(lv_path)      = VALUE #( lt_params[ name = 'sicf_path'     ]-value OPTIONAL ).
+    DATA(lv_app_name)  = VALUE #( lt_params[ name = 'app_name'      ]-value OPTIONAL ).
+    DATA(lv_entity)    = VALUE #( lt_params[ name = 'entity'        ]-value OPTIONAL ).
+    DATA(lv_odata_v)   = VALUE #( lt_params[ name = 'odata_version' ]-value OPTIONAL ).
+    DATA(lv_is_draft)  = VALUE #( lt_params[ name = 'is_draft'      ]-value OPTIONAL ).
 
     " Exemplo de Documentação
     APPEND VALUE #( name = 'Especificação ABAP' value = 'http://google.com.br' ) TO ls_response-documents.
 
     " Exemplo de Informações Gerais SAP
     APPEND VALUE #( name = 'RICEFW'       value = '123'           ) TO ls_response-sap.
-    APPEND VALUE #( name = lv_object-name value = lv_object-value ) TO ls_response-sap.
-    APPEND VALUE #( name = lv_action-name value = lv_action-value ) TO ls_response-sap.
-    APPEND VALUE #( name = lv_nome-name   value = lv_nome-value   ) TO ls_response-sap.
-    APPEND VALUE #( name = lv_cds-name    value = lv_cds-value    ) TO ls_response-sap.
 
     " Retorna Valores
     DATA(lv_response_json) = /ui2/cl_json=>serialize( data = ls_response pretty_name =  /ui2/cl_json=>pretty_mode-low_case ).
