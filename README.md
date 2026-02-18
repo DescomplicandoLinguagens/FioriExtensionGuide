@@ -1,6 +1,7 @@
-# SAP Fiori Extension
+# SAP Fiori Extension & Analyzer 🚀
+Análise inteligente e extração de metadados para ecossistemas SAP Fiori.
 
-Uma extensão do Chrome para analisar e extrair informações de aplicativos SAP Fiori, incluindo detalhes como objetos semânticos, ações, nomes de CDS, documentos associados e informações SAP.
+Uma extensão robusta para o Google Chrome projetada para arquitetos e desenvolvedores SAP. Ela automatiza a engenharia reversa de aplicativos Fiori (List Reports, Overview Pages, Freestyle), extraindo metadados técnicos e conectando-os diretamente à documentação oficial e APIs proprietárias.
 
 - **Versão**: 1.0
 - **Manifest Version**: 3
