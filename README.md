@@ -68,6 +68,7 @@ Esta extensão permite que os usuários analisem páginas de aplicativos SAP Fio
     DATA(lv_entity)    = VALUE #( lt_params[ name = 'entity'        ]-value OPTIONAL ).
     DATA(lv_odata_v)   = VALUE #( lt_params[ name = 'odata_version' ]-value OPTIONAL ).
     DATA(lv_is_draft)  = VALUE #( lt_params[ name = 'is_draft'      ]-value OPTIONAL ).
+    DATA(lv_app_type)  = VALUE #( lt_params[ name = 'app_type'      ]-value OPTIONAL ).
 
     " Exemplo de Documentação
     APPEND VALUE #( name = 'Especificação ABAP' value = 'http://google.com.br' ) TO ls_response-documents.
